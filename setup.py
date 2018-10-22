@@ -1,4 +1,5 @@
 #!/usr/bin/env python -u
+from builtins import map
 from setuptools import setup, find_packages
 
 setup(
