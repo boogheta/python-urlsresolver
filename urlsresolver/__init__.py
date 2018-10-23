@@ -1,24 +1,20 @@
 # coding=utf-8
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urlparse import urlparse
+
+from future import standard_library
+standard_library.install_aliases()
+
+import re
+from builtins import str
+from builtins import next
+from contextlib import closing
+from collections import OrderedDict
+from urllib.parse import urljoin
 try:
     from html import unescape
 except ImportError:
-    try:
-        from html.parser import HTMLParser
-    except ImportError:
-        from HTMLParser import HTMLParser
+    from html.parser import HTMLParser
     parser = HTMLParser()
     unescape = parser.unescape
-import re
-from contextlib import closing
-from collections import OrderedDict
-from builtins import str
-from builtins import next
-from future import standard_library
-standard_library.install_aliases()
 
 # HTML tags syntax http://www.w3.org/TR/html-markup/syntax.html
 TAG_ATTRIBUTES_REGEX = \
@@ -131,7 +127,7 @@ def resolve_url(
                     m = m[1:-1]
 
                 real_url = follow_meta_redirects(
-                    urlparse.urljoin(resp.url, m), redirects)
+                    urljoin(resp.url, m), redirects)
 
         urls_history[real_url] = True
 
