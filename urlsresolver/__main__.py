@@ -1,5 +1,4 @@
 from __future__ import print_function
-from builtins import map
 import argparse
 
 import urlsresolver
